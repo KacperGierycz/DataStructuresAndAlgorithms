@@ -98,7 +98,16 @@ class Result {
     return ans;
     }
     
-    
+    public static int numberNeeded(String first, String second) {
+        int[] freq = new int[26];
+        first.chars().forEach((c) -> {
+            freq[c - 97]++;
+        });
+        second.chars().forEach((c) -> {
+            freq[c - 97]--;
+        });
+        return Arrays.stream(freq).map(Math::abs).sum();
+}
 }
 
 public class Anagrams {
