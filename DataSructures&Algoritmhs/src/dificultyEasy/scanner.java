@@ -9,8 +9,9 @@ public class scanner {
 	
 	while (sc.hasNextLong()) {
 	   long a = sc.nextLong(), b = sc.nextLong();
+	   
 	   // solve test case and output answer
-	   int i =1;
+	
 //	String str = new String();
 //	str.concat('s');
 //    String chr=str.substring(i,i+1);
