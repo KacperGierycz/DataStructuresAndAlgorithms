@@ -20,6 +20,16 @@ class Result3 {
      * The function is expected to return an INTEGER.
      * The function accepts STRING s as parameter.
      */
+	 public static int alternatingCharacters2(String s) {
+    int count=0;
+    for (int j = 0; j < s.length()-1; j++) {
+        if(s.charAt(j)==s.charAt(j+1))
+            count++;
+      } 
+   
+	return count;
+}	
+	
 
     public static int alternatingCharacters(String s) {
 
