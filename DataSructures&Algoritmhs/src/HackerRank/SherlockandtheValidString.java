@@ -88,6 +88,7 @@ public class SherlockandtheValidString {
         //   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
+        	
         String s = bufferedReader.readLine();
 
         String result = Result4.isValid(s);
