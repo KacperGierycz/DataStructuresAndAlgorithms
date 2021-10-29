@@ -119,8 +119,32 @@ public class FrequencyQueries {
                  }
           //   }
      return ans;
-
+    }
+     
+     static List<Integer> freqQuery2(List<List<Integer>> queries) {
+         List<Integer> ans = new ArrayList<>();
+         Map<Integer,Integer> map = new HashMap<>();
+         int maxFr = 0;
+         for(List<Integer> ops : queries) {
+             int op = ops.get(0);
+             int data = ops.get(1);
+             Integer v = map.get(data) == null ? 0 : map.get(data);
+             if(op == 1) {//insert
+                 map.put(data, ++v);
+                 maxFr = Math.max(maxFr, v);
+             } else if(op == 2) {//delete
+                 if(v > 0) {
+                     map.put(data, --v);
+                 }
+             } else { //frequency
+                 if(data <= maxFr && map.containsValue(data)) ans.add(1);
+                 else ans.add(0);
+             }
          }
+         return ans;
+     }
+
+         
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
