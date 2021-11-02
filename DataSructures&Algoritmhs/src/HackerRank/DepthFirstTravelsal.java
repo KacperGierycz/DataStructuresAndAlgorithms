@@ -40,6 +40,26 @@ public class DepthFirstTravelsal {
 			}
 		}		
 	}
+	
+	public static String hasPath(Map<Character, Character[]> G,Character source,Character dest) {
+		Queue<Character> queue= new LinkedList<>();
+		queue.add(source);
+		while(queue.size()>0) {
+			Character current=queue.poll();
+			if (current==dest) {
+				System.out.println("Exit Found");
+				return "Exit Found";
+				
+			}
+			System.out.println(current);
+			for(Character neighbour:G.get(current)) {
+				queue.add(neighbour);
+			}
+			}
+		System.out.println("No Way out");
+		return "No Way out";		
+	}
+	
 
 	private static Map<Character, Character[]> createMap() {
 		Character[]aa= {'c','b'},ab={'d'},ac= {'e'},ad= {'f'},ae= {},af= {};
@@ -57,9 +77,10 @@ public class DepthFirstTravelsal {
 
 	public static void main(String[] args) {
 		Map<Character, Character[]> G = createMap();
-		DFS( G,'a');
-		System.out.println("II");
-		BFS(G,'a');
+		hasPath(G,'a','f' );
+//		DFS( G,'a');
+//		System.out.println("II");
+//		BFS(G,'a');
 	//	System.out.println("II");
 	//	DFSRecusion( G,'a');
 	}
