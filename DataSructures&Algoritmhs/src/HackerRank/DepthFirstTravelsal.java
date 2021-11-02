@@ -21,6 +21,15 @@ public class DepthFirstTravelsal {
 		
 	}
 	
+	public static void DFSRecusion(Map<Character, Character[]> G,Character source) {
+		System.out.println(source);
+		for(Character neighbour:G.get(source)) {
+			DFSRecusion(G,neighbour);
+		}
+		
+		
+	}
+	
 	
 
 	private static Map<Character, Character[]> createMap() {
@@ -40,6 +49,8 @@ public class DepthFirstTravelsal {
 	public static void main(String[] args) {
 		Map<Character, Character[]> G = createMap();
 		DFS( G,'a');
+		System.out.println("II");
+		DFSRecusion( G,'a');
 	}
 
 }
