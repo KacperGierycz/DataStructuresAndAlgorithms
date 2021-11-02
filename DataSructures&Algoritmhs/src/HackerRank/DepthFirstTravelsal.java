@@ -1,7 +1,9 @@
 package HackerRank;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Stack;
 
 public class DepthFirstTravelsal {
@@ -18,22 +20,29 @@ public class DepthFirstTravelsal {
 			stack.push(neighbour);	
 			}
 		}
-		
 	}
 	
 	public static void DFSRecusion(Map<Character, Character[]> G,Character source) {
 		System.out.println(source);
 		for(Character neighbour:G.get(source)) {
 			DFSRecusion(G,neighbour);
-		}
-		
-		
+		}	
 	}
 	
-	
+	public static void BFS(Map<Character, Character[]> G,Character source) {
+		Queue<Character> queue= new LinkedList<>();
+		queue.add(source);
+		while(queue.size()>0) {
+			Character current=queue.poll();
+			System.out.println(current);
+			for(Character neighbour:G.get(current)) {
+				queue.add(neighbour);
+			}
+		}		
+	}
 
 	private static Map<Character, Character[]> createMap() {
-		Character[]aa= {'b','c'},ab={'d'},ac= {'e'},ad= {'f'},ae= {},af= {};
+		Character[]aa= {'c','b'},ab={'d'},ac= {'e'},ad= {'f'},ae= {},af= {};
 
 		
 	    Map<Character, Character[]> myMap = new HashMap<Character, Character[]>();
@@ -50,7 +59,9 @@ public class DepthFirstTravelsal {
 		Map<Character, Character[]> G = createMap();
 		DFS( G,'a');
 		System.out.println("II");
-		DFSRecusion( G,'a');
+		BFS(G,'a');
+	//	System.out.println("II");
+	//	DFSRecusion( G,'a');
 	}
 
 }
