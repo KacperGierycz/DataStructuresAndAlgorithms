@@ -1,7 +1,9 @@
 package HackerRank;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
@@ -98,16 +100,54 @@ public class DepthFirstTravelsal {
 	    myMap.put('f', af);
 	    return myMap;
 	}
+	private static Map<Character, List<Character>> createMapUndirected() {
+	    Map<Character, List<Character>> myMap = new HashMap<Character, List<Character>>();
+		Character[][] edges = {
+				{'i', 'j'},
+				{'k', 'i'},
+				{'m', 'k'},
+				{'k', 'l'},
+				{'o', 'n'}
+		};
+		for(Character[] c:edges) {
+		if(!myMap.containsKey(c[0])){
+			myMap.put(c[0], new ArrayList<>());
+		}
+		if(!myMap.containsKey(c[1])){
+			myMap.put(c[1], new ArrayList<>());
+		}
+		List<Character>cp0=myMap.get(c[0]);
+		cp0.add(c[1]);
+		List<Character>cp1=myMap.get(c[1]);
+		cp1.add(c[0]);
+		
+		
+		}
+		
+		return myMap;
+		
+	}
 
+	private static void undirectedPath(Map<Character, List<Character>> gU, char c, char d) {
+		System.out.println(gU);
+		
+	}
+	
 	public static void main(String[] args) {
-		Map<Character, Character[]> G = createMap();
-		hasPathBFS(G,'b','e' );
-		hasPathDFS(G,'b','e' );
+	//	Map<Character, Character[]> G = createMap();
+		Map<Character, List<Character>> GU = createMapUndirected();
+		undirectedPath(GU,'a','b'); 	
+	//	hasPathBFS(G,'b','e' );
+	//	hasPathDFS(G,'b','e' );
 //		DFS( G,'a');
 //		System.out.println("II");
 //		BFS(G,'a');
 	//	System.out.println("II");
 	//	DFSRecusion( G,'a');
 	}
+
+
+
+
 
 }
