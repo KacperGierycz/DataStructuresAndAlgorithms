@@ -2,13 +2,19 @@ package HackerRank;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.Stack;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class DepthFirstTravelsal {
+public class GraphFCC {
 	
 	public static void DFS(Map<Character, Character[]> G,Character source) {
 		Stack<Character>stack=new Stack<Character>();
@@ -128,15 +134,106 @@ public class DepthFirstTravelsal {
 		
 	}
 
-	private static void undirectedPath(Map<Character, List<Character>> gU, char c, char d) {
-		System.out.println(gU);
+	private static boolean undirectedPath(
+			Map<Character, List<Character>> gU, char src, char dest,Set<Character> vis) {
+//		Set<Character> set = new HashSet<Character> ();
+		
+		if (src==dest) {
+			System.out.println("true");
+			return true;
+		}
+		
+		if (vis.contains(src)) {
+			System.out.println("false");
+			return false;
+		}
+		
+		vis.add(src);
+	// 	System.out.println(src);
+		
+		for(Character neighbour:gU.get(src)) {
+			if(undirectedPath(gU,neighbour,dest,vis)==true) {
+				return true;
+			}
+		}
+		
+		//System.out.println(gU);
+		return false;
 		
 	}
 	
+	private static Map<Integer, List<Integer>> createGraphInteger() {
+	    Map<Integer, List<Integer>> myMap = new HashMap<Integer, List<Integer>>();
+
+	    
+	    Scanner sc=new Scanner(System.in);
+		   String s=sc.nextLine();
+		   
+
+
+		   
+		   System.out.println(s);
+		   String[]ssplit=s.split("(\\d+)\\D+");
+		   
+		   
+		   Pattern pattern = Pattern.compile("(\\d+)\\D+");
+		    ArrayList<String> list = new ArrayList<String>();
+		    Matcher matcher = pattern.matcher(s);
+		    while(matcher.find()) {
+		        list.add(matcher.group(1));
+		    }
+		    // if you really need an array
+		    String[] array = list.toArray(new String[0]);
+		    System.out.println(array[0]);
+		   
+		   System.out.println(ssplit[0]);
+		   myMap.put(Integer.parseInt(ssplit[0]), new ArrayList<>());
+		   int ii=0;
+		   for(String si:ssplit) {
+			   if(ii==0) {
+				   myMap.put(Integer.parseInt(ssplit[0]), new ArrayList<>());
+			   }
+				List<Integer>cp0=myMap.get(Integer.parseInt(ssplit[0]));
+				cp0.add(Integer.parseInt(si));
+			   
+		   }
+
+				
+				return myMap;
+				}
+	
+	private static int connectedComponentCount(Map<Integer, List<Integer>> gI) {
+		Set<Integer> visited=new HashSet<>();
+		int count =0;
+		
+		for (Integer node:gI.keySet()) {
+			if (explore(gI,node,visited)==true) {
+				count++;
+			}
+		}
+		return count;
+	}
+	
+	private static boolean explore(Map<Integer, List<Integer>> gI, Integer node, Set<Integer> visited) {
+		if (visited.contains(node)) return false;
+		
+		visited.add(node);
+		
+		for (Integer neighbour:gI.get(node)) {
+			explore(gI,neighbour,visited);
+		}
+		
+		return true;
+	}
+
 	public static void main(String[] args) {
 	//	Map<Character, Character[]> G = createMap();
-		Map<Character, List<Character>> GU = createMapUndirected();
-		undirectedPath(GU,'a','b'); 	
+	//	Map<Character, List<Character>> GU = createMapUndirected();
+
+	//	undirectedPath(GU,'i','o',new HashSet<Character>()); 	
+		Map<Integer,List<Integer>> GI=createGraphInteger();
+		int cc=connectedComponentCount(GI);
+		System.out.println(cc);
 	//	hasPathBFS(G,'b','e' );
 	//	hasPathDFS(G,'b','e' );
 //		DFS( G,'a');
@@ -145,6 +242,10 @@ public class DepthFirstTravelsal {
 	//	System.out.println("II");
 	//	DFSRecusion( G,'a');
 	}
+
+
+
+
 
 
 
