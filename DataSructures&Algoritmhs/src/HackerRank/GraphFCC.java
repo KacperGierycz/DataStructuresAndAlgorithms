@@ -167,38 +167,51 @@ public class GraphFCC {
 
 	    
 	    Scanner sc=new Scanner(System.in);
-		   String s=sc.nextLine();
-		   
-
-
-		   
+	    while(sc.hasNextLine()) {
+	    
+		   String s=sc.nextLine().trim();		   
 		   System.out.println(s);
-		   String[]ssplit=s.split("(\\d+)\\D+");
-		   
-		   
-		   Pattern pattern = Pattern.compile("(\\d+)\\D+");
-		    ArrayList<String> list = new ArrayList<String>();
-		    Matcher matcher = pattern.matcher(s);
-		    while(matcher.find()) {
-		        list.add(matcher.group(1));
-		    }
-		    // if you really need an array
-		    String[] array = list.toArray(new String[0]);
-		    System.out.println(array[0]);
-		   
-		   System.out.println(ssplit[0]);
-		   myMap.put(Integer.parseInt(ssplit[0]), new ArrayList<>());
+		   String[]ssplit=s.split("[^0-9]+");	
+		   if (s.equals(null)||s.equals("")){
+			   break;
+		   }
+//		   for(String i:ssplit) {
+//			   System.out.println(i);
+//		   }
+//		   
+//		   
+//		   Pattern pattern = Pattern.compile("(\\d+)\\D+");
+//		    ArrayList<String> list = new ArrayList<String>();
+//		    Matcher matcher = pattern.matcher(s);
+//		    while(matcher.find()) {
+//		        list.add(matcher.group(1));
+//		    }
+//		    
+//		    // if you really need an array
+//		    String[] array = list.toArray(new String[0]);
+//		    System.out.println(list);
+//		    System.out.println(array[0]);
+//		   
+//		   System.out.println(ssplit[3]);
+	//	   myMap.put(Integer.parseInt(ssplit[0]), new ArrayList<>());
 		   int ii=0;
 		   for(String si:ssplit) {
-			   if(ii==0) {
-				   myMap.put(Integer.parseInt(ssplit[0]), new ArrayList<>());
+			   if (s==null||s=="") {
+				   break;
 			   }
+			   if(ii==0) {
+				   myMap.put(Integer.parseInt(si), new ArrayList<Integer>());
+			   ii++;
+			   }
+			   else {
 				List<Integer>cp0=myMap.get(Integer.parseInt(ssplit[0]));
 				cp0.add(Integer.parseInt(si));
 			   
 		   }
+	    }
+	    }
+	    sc.close();  
 
-				
 				return myMap;
 				}
 	
