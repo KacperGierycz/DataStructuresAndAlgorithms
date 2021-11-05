@@ -170,7 +170,7 @@ public class GraphFCC {
 		   String s=sc.nextLine();
 		   
 
-ss
+
 		   
 		   System.out.println(s);
 		   String[]ssplit=s.split("(\\d+)\\D+");
