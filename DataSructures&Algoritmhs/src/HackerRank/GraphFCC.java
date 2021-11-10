@@ -167,9 +167,9 @@ public class GraphFCC {
 
 	    
 	    Scanner sc=new Scanner(System.in);
-	    while(sc.hasNextLine()) {
+	    while(sc.hasNext()) {
 	    
-		   String s=sc.nextLine().trim();		   
+		   String s=sc.nextLine().trim(); //Line().trim		   
 		   System.out.println(s);
 		   String[]ssplit=s.split("[^0-9]+");	
 		   if (s.equals(null)||s.equals("")){
