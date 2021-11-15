@@ -8,8 +8,43 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class GraphV2 {
+	
+	private static Map<Character, List<Character>> createGraphChar(){
+	
+		Map<Character, List<Character>> myMap = new HashMap<Character, List<Character>>();
+		
+		Scanner sc= new Scanner(new InputStreamReader(System.in));
+		sc.useDelimiter("[^a-z0]+");
+		while (sc.hasNext()) {
+			
+//			 String token1 = sc.next();
+//			 String token2 = sc.next();
+			 Character c1=sc.next().charAt(0);
+			 if(c1=='0')break;
+			 Character c2=sc.next().charAt(0);
+
+			 //	String sc1=sc.next("[a-z]?");
+	//		Character c1=sc.next("[a-z]").charAt(0);
+	//		System.out.println(sc1);
+//			System.out.println(token1);
+//			System.out.println(token2);
+			
+	//		Character c2=sc.next("[a-z]").charAt(0);
+			
+			if (!myMap.containsKey(c1)) myMap.put(c1, new ArrayList<Character>());
+			if (!myMap.containsKey(c2)) myMap.put(c2, new ArrayList<Character>());
+			
+			myMap.get(c1).add(c2);
+			myMap.get(c2).add(c1);
+			
+		}
+		sc.close();
+		
+		return myMap;		
+	}
 
 	private static Map<Integer, List<Integer>> createGraphInteger() throws IOException {
     Map<Integer, List<Integer>> myMap = new HashMap<Integer, List<Integer>>();
@@ -95,14 +130,16 @@ public class GraphV2 {
 	public static void main(String[] args) throws IOException {
 
 	
-		Map<Integer,List<Integer>> graph=createGraphInteger();
+//		Map<Integer,List<Integer>> graph=createGraphInteger();
+//		
+//		System.out.println(graph);
+//		
+//		int largestComponent=largestC(graph);
+//		
+//		System.out.println(largestComponent);
 		
-		System.out.println(graph);
-		
-		int largestComponent=largestC(graph);
-		
-		System.out.println(largestComponent);
-
+		Map<Character, List<Character>> graphChar = createGraphChar();
+		System.out.println(graphChar);
 	
 	}
 
