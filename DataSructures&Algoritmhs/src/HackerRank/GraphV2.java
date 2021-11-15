@@ -6,8 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class GraphV2 {
@@ -106,6 +108,8 @@ public class GraphV2 {
 	
 	
 	
+	
+	
 	private static int exploreSize(Map<Integer, List<Integer>> graph, Integer node, HashSet<Integer> visited) {
 
 
@@ -126,6 +130,38 @@ public class GraphV2 {
 		
 		return size;
 	}
+	
+	private static int shortestPath(Map<Character, List<Character>> graphChar, char c, char d) {
+
+		Queue<HashMap<Character, Integer>> queue=new LinkedList<>();
+		queue.add(new HashMap(c,0));
+		HashSet<Character>visited=new HashSet<>();
+		visited.add(c);
+		
+		while(queue.size()>0) {
+			
+			HashMap<Character, Integer> current =queue.poll();
+			Character p
+			
+			if(current.containsKey(d)) {
+				return current.get(d);
+			}
+			
+			for(Character neighbour:graphChar.get(current.get(0))) {
+				if(!visited.contains(neighbour)) {
+					visited.add(neighbour);
+					queue.add(neighbour,current.)
+				}
+				
+			}
+			
+		}
+		
+
+		return 0;
+	}
+	
+	
 
 	public static void main(String[] args) throws IOException {
 
@@ -139,9 +175,12 @@ public class GraphV2 {
 //		System.out.println(largestComponent);
 		
 		Map<Character, List<Character>> graphChar = createGraphChar();
+		int distance= shortestPath(graphChar, 'x' ,'y' );
 		System.out.println(graphChar);
 	
 	}
+
+
 
 
 
