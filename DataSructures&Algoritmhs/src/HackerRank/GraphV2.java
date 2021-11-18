@@ -131,38 +131,58 @@ public class GraphV2 {
 		return size;
 	}
 	
-	private static int shortestPath(Map<Character, List<Character>> graphChar, char c, char d) {
+	public class Distance {
+		
+		public Character name;
+		public int distance;
 
-		Queue<HashMap<Character, Integer>> queue=new LinkedList<>();
-		queue.add(new HashMap(c,0));
+		Distance(Character a, int i){
+		
+		 this.name=a;
+		this.distance=i;
+		}
+	}
+	
+	private static int shortestPath(Map<Character, List<Character>> graphChar, Character c, Character d) {
+
+	//	Queue<HashMap<Character, Integer>> queue=new LinkedList<>();
+		Queue<Distance> queue1=new LinkedList<>();
+		
+	//	queue.add(new HashMap(c,0));
+		GraphV2 gd= new GraphV2();
+	//	GraphV2.Distance d1= gd.new Distance(c,0);
+	//	queue1.add(new Distance(c,0));
+		queue1.add(gd.new Distance(c,0));
+	//	System.out.println(queue1.peek().name);
+		
 		HashSet<Character>visited=new HashSet<>();
 		visited.add(c);
 		
-		while(queue.size()>0) {
+		while(queue1.size()>0) {
 			
-			HashMap<Character, Integer> current =queue.poll();
-			Character p=
+	//		HashMap<Character, Integer> current =queue.poll();
+			Distance current1=queue1.poll();
+			Character p=current1.name;
 			
-			if(current.containsKey(d)) {
-				return current.get(d);
+			if(current1.name==d) {
+				return current1.distance;
+	//			return current.get(d);
 			}
 			
-			for(Character neighbour:graphChar.get(current.get(0))) {
+			System.out.println(p);
+			System.out.println(graphChar);
+			
+			for(Character neighbour:graphChar.get(p)) {
+				System.out.println(neighbour);
 				if(!visited.contains(neighbour)) {
 					visited.add(neighbour);
-					queue.add(neighbour,current.)
-				}
-				
-			}
-			
+					queue1.add(gd.new Distance (neighbour,current1.distance+1));
+				}				
+			}			
 		}
-		
-
-		return 0;
+		return -1;
 	}
 	
-	
-
 	public static void main(String[] args) throws IOException {
 
 	
@@ -175,8 +195,9 @@ public class GraphV2 {
 //		System.out.println(largestComponent);
 		
 		Map<Character, List<Character>> graphChar = createGraphChar();
-		int distance= shortestPath(graphChar, 'x' ,'y' );
-		System.out.println(graphChar);
+		int distance= shortestPath(graphChar, 'w' ,'z' );
+		System.out.println(distance);
+	//	System.out.println(graphChar);
 	
 	}
 
