@@ -47,6 +47,28 @@ public class GraphV2 {
 		
 		return myMap;		
 	}
+	
+	private static Map<Integer, List<Integer>> createGraphChar(List<List<Integer>> cities){
+		Map<Integer, List<Integer>> myMap = new HashMap<Integer, List<Integer>>();
+		
+		for(List<Integer> l:cities) {
+			
+			Integer c1=l.get(0);
+			Integer c2=l.get(1);
+			
+			if (!myMap.containsKey(c1)) myMap.put(c1, new ArrayList<Integer>());
+			if (!myMap.containsKey(c2)) myMap.put(c2, new ArrayList<Integer>());
+			
+			myMap.get(c1).add(c2);
+			myMap.get(c2).add(c1);
+			
+			
+			
+		}
+		
+		return myMap;		
+	}
+	
 
 	private static Map<Integer, List<Integer>> createGraphInteger() throws IOException {
     Map<Integer, List<Integer>> myMap = new HashMap<Integer, List<Integer>>();
@@ -87,6 +109,54 @@ public class GraphV2 {
     System.out.println("exit");
     bufferedReader.close();
     return myMap;
+	}
+	
+	private static int largestCConnectedComponent(Map<Integer, List<Integer>> graph) {
+		System.out.println("start");
+		HashSet<Integer> visited=new HashSet<Integer>();
+		List<ArrayList<Integer>>ConnectedComponents=new  ArrayList<ArrayList<Integer>>();
+		
+		int nrOfConnectedComponent=0;
+		for (Integer node:graph.keySet()) {
+			System.out.println(node);
+			int size=exploreSizeConnectedComponent(graph,node,visited,ConnectedComponents,nrOfConnectedComponent);
+			if(size==1) {
+				nrOfConnectedComponent++;
+			}
+		}		
+		return ConnectedComponents.size();
+	}
+		
+	private static int exploreSizeConnectedComponent(
+		Map<Integer, List<Integer>> graph, Integer node, HashSet<Integer> visited,
+		List<ArrayList<Integer>> ConnectedComponents,int nrOfConnectedComponent) {
+
+		if(ConnectedComponents.size()>0){
+	        ArrayList<Integer>connectedComponent=ConnectedComponents.get(nrOfConnectedComponent);
+	}
+	else{ArrayList<Integer>connectedComponent=new ArrayList<Integer>();
+	    
+	}
+		
+        if(visited.contains(node)) {
+            return 0;
+        }
+        
+        visited.add(node);
+        connectedComponent.add(node);
+        System.out.println(node);
+        
+        if(ConnectedComponents.size()==0){
+            ConnectedComponents.add(connectedComponent);
+        }
+	//	int size=1;
+		
+		for(Integer neighbor:graph.get(node)) {
+			exploreSizeConnectedComponent(graph, neighbor, visited,ConnectedComponents,nrOfConnectedComponent);
+			
+		}
+		
+		return 1;
 	}
 	
 	private static int largestC(Map<Integer, List<Integer>> graph) {
