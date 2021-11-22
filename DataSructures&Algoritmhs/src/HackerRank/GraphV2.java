@@ -114,7 +114,7 @@ public class GraphV2 {
 	private static int largestCConnectedComponent(Map<Integer, List<Integer>> graph) {
 		System.out.println("start");
 		HashSet<Integer> visited=new HashSet<Integer>();
-		List<ArrayList<Integer>>ConnectedComponents=new  ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer>ConnectedComponents=new ArrayList<Integer>();
 		
 		int nrOfConnectedComponent=0;
 		for (Integer node:graph.keySet()) {
@@ -128,36 +128,25 @@ public class GraphV2 {
 	}
 		
 	private static int exploreSizeConnectedComponent(
-		Map<Integer, List<Integer>> graph, Integer node, HashSet<Integer> visited,
-		List<ArrayList<Integer>> ConnectedComponents,int nrOfConnectedComponent) {
-
-		if(ConnectedComponents.size()>0){
-	        ArrayList<Integer>connectedComponent=ConnectedComponents.get(nrOfConnectedComponent);
-	}
-	else{ArrayList<Integer>connectedComponent=new ArrayList<Integer>();
-	    
-	}
-		
-        if(visited.contains(node)) {
-            return 0;
-        }
-        
-        visited.add(node);
-        connectedComponent.add(node);
-        System.out.println(node);
-        
-        if(ConnectedComponents.size()==0){
-            ConnectedComponents.add(connectedComponent);
-        }
-	//	int size=1;
-		
-		for(Integer neighbor:graph.get(node)) {
-			exploreSizeConnectedComponent(graph, neighbor, visited,ConnectedComponents,nrOfConnectedComponent);
+			Map<Integer, List<Integer>> graph, Integer node, HashSet<Integer> visited,
+			ArrayList<Integer>components,int nrOfConnectedComponent) {
 			
+	        if(visited.contains(node)) {
+	            return 0;
+	        }
+	        
+	        visited.add(node);
+	        components.add(node);
+	        
+	//        System.out.println(node);
+			
+			for(Integer neighbor:graph.get(node)) {
+				exploreSizeConnectedComponent(graph, neighbor, visited,components,nrOfConnectedComponent);
+				
+			}
+			
+			return 000000;
 		}
-		
-		return 1;
-	}
 	
 	private static int largestC(Map<Integer, List<Integer>> graph) {
 		System.out.println("start");
