@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Solution12 {
+public class GraphSolution12 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
      //   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -46,7 +46,7 @@ public class Solution12 {
                     }
                 });
 
-                long result = RoadsandLibraries.roadsAndLibraries(n, c_lib, c_road, cities);
+                long result = GraphRoadsandLibraries.roadsAndLibraries(n, c_lib, c_road, cities);
 
                 bufferedWriter.write(String.valueOf(result));
                 bufferedWriter.newLine();
