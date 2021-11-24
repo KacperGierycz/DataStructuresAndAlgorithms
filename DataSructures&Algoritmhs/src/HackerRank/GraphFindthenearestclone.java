@@ -42,14 +42,87 @@ public class GraphFindthenearestclone {
 		return myMap;		
 	}
 	
+	//public static String hasPathBFS(Map<Character, Character[]> G,Character source,Character dest) {
+	public static int hasPathBFS(Map<Integer, List<Integer>> G,int source, long[] ids) {
+		if(source==-1)return-1;
+		HashSet<Integer> visited=new HashSet<Integer>();
+		visited.add(source);
+		Queue<Integer> queue= new LinkedList<>();
+		queue.add(source);
+		int dist=0;
+		
+		while(queue.size()>0) {
+			
+			int current=queue.poll();
+			if (!visited.contains(current)) {
+				
+	//			System.out.println("current "+current+" source "+source);
+				
+			if (ids[current-1]==ids[source-1]) {
+				
+		//		System.out.println("Exit Found"+current+" "+source);
+	//					
+						
+				
+		//		System.out.println("distance "+dist);
+				
+				return dist;
+				
+			}
+			}
+			visited.add(current);
+			
+	//		System.out.println(current);
+			
+			for(Integer neighbour:G.get(current)) {
+				if (!visited.contains(neighbour)) {
+				queue.add(neighbour);
+				}
+			}
+			dist++;
+			}
+		
+	//	System.out.println("No Way out");
+		
+		return -1;		
+		
+		
+	}
+	
 	    static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val) {
 		
 	    	Map<Integer, List<Integer>> myMap=createGraphChar(graphFrom, graphTo);
+	    	List<Integer>positions=new ArrayList<>();
+	    	int pos=-1;
+	    	int pathLength = -1; 
+	    	
+	 //   	System.out.println(myMap);
+	    	
+	    	for(int i=0;i<ids.length;i++) {
+	    		if( ids[i]==val){
+	    			pos=i+1;
+	    			positions.add(i+1);
+	    		}
+	    	}
+	    	
+	 //   	System.out.println(positions);
+	    	
+	    	pathLength = hasPathBFS(myMap, pos, ids);
+	    	
+	    	for(int i:positions) {
+	    	int pathLengthCurr = hasPathBFS(myMap, i, ids); 
+	    	
+	 //   	System.out.println("positions "+i);
+	 //   	System.out.println(pathLengthCurr+" "+"pathLengthCurr");
+	    	
+	    	if (pathLengthCurr<pathLength&&pathLengthCurr>0) {
+	    		
+	    		pathLength=pathLengthCurr;
+	    	}
+	    	}
 	    	
 	    	
-	    	
-	    	
-	    	return val;
+	    	return pathLength;
 	        // solve here
 
 	    }
@@ -57,8 +130,9 @@ public class GraphFindthenearestclone {
 	    private static final Scanner scanner = new Scanner(System.in);
 
 	    public static void main(String[] args) throws IOException {
-	        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-
+	     //   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+	        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+	        
 	        String[] graphNodesEdges = scanner.nextLine().split(" ");
 	        int graphNodes = Integer.parseInt(graphNodesEdges[0].trim());
 	        int graphEdges = Integer.parseInt(graphNodesEdges[1].trim());
