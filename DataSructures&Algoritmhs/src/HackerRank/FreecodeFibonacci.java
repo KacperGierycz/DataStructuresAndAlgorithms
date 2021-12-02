@@ -33,6 +33,7 @@ public class FreecodeFibonacci {
 
 	        int q = Integer.parseInt(bufferedReader.readLine().trim());
 
+
 	        Long result = FreecodeFibonacci.calculate(q, null);
 //new HashMap<Integer,Long>()
 	        
