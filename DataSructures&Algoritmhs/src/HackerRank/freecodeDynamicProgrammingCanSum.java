@@ -11,19 +11,21 @@ public class freecodeDynamicProgrammingCanSum {
 	
 	private static boolean canSum(int targetSum, int[] qi,HashMap<Integer,Boolean> memo) {
 		if(memo==null)memo=new HashMap<Integer,Boolean>();
+		if(memo.containsKey(targetSum))return memo.get(targetSum);
 		if(targetSum==0)return true;
 		if(targetSum<0)return false;
 		
 		for(int i=1;i<qi.length;i++) {
 			int remainder=targetSum-qi[i];
 			if(canSum(remainder,qi,memo)==true) {
+				memo.put(targetSum,true);
 				return true;
 			}
 		
 		}
 		
 		
-		
+		memo.put(targetSum, false);
 		return false;
 		
 	}
