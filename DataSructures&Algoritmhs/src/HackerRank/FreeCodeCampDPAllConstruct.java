@@ -14,19 +14,46 @@ public class FreeCodeCampDPAllConstruct {
 	private static List<LinkedList<String>> allConstruct(String target, String[] wordBank
 			, Object object) {
 		
-		if(target=="") return new ArrayList<LinkedList<String>>();
+		if(target.equals("")) {
+			List<LinkedList<String>> result2=new ArrayList<LinkedList<String>>();
+			LinkedList<String>ll=new LinkedList<String>();
+			String s=new String("");
+		//	ll.add(s);
+			result2.add(ll);
+			return result2;
+		}
 		
-		List<LinkedList<String>> result=new ArrayList<>();
+		List<LinkedList<String>> result=new ArrayList<LinkedList<String>>();
 		
 		for(int i=1;i<wordBank.length;i++) {
 			String word=wordBank[i];
-			if(target.indexOf(wordBank[i])==0) {
-				String suffix=target.substring(wordBank[i].length());
+			if(target.indexOf(word)==0) {
+				String suffix=target.substring(word.length());
 				List<LinkedList<String>> suffixWays = allConstruct(suffix,wordBank,null);
-				List<LinkedList<String>> targetWays=new ArrayList<LinkedList<String>>();
 				
+				List<LinkedList<String>> targetWays=new ArrayList<LinkedList<String>>();
 				targetWays.addAll(suffixWays);
+			
+
+//				if (targetWays.isEmpty()) {
+//					LinkedList<String>ll=new LinkedList<String>();
+//					
+//					ll.add(word);
+//					targetWays.add(ll);
+//				}else {
+//					targetWays.forEach(l->l.addFirst(word));
+//				}
+//					LinkedList<String>ll=new LinkedList<String>();
+//					
+//					ll.add(word);
+//					targetWays.add(ll);
 				targetWays.forEach(l->l.addFirst(word));
+				
+//				for(LinkedList<String> k:targetWays) {
+//					k.addFirst(word);
+//				}
+				
+				
 				result.addAll(targetWays);
 				
 			}
