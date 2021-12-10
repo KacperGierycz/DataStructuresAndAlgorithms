@@ -32,27 +32,9 @@ public class FreeCodeCampDPAllConstruct {
 				List<LinkedList<String>> suffixWays = allConstruct(suffix,wordBank,null);
 				
 				List<LinkedList<String>> targetWays=new ArrayList<LinkedList<String>>();
-				targetWays.addAll(suffixWays);
-			
+				targetWays.addAll(suffixWays);			
 
-//				if (targetWays.isEmpty()) {
-//					LinkedList<String>ll=new LinkedList<String>();
-//					
-//					ll.add(word);
-//					targetWays.add(ll);
-//				}else {
-//					targetWays.forEach(l->l.addFirst(word));
-//				}
-//					LinkedList<String>ll=new LinkedList<String>();
-//					
-//					ll.add(word);
-//					targetWays.add(ll);
-				targetWays.forEach(l->l.addFirst(word));
-				
-//				for(LinkedList<String> k:targetWays) {
-//					k.addFirst(word);
-//				}
-				
+				targetWays.forEach(l->l.addFirst(word));			
 				
 				result.addAll(targetWays);
 				
