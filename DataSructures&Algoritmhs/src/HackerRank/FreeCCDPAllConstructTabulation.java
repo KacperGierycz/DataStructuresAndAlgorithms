@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class FreeCCDPAllConstructTabulation {
@@ -31,41 +32,11 @@ public class FreeCCDPAllConstructTabulation {
 				if(target.length()>=i+word.length()) {
 				String slice=target.substring(i,i+word.length());
 				if(slice.equals(word)) {
-//					if (	table4[i+word.length()]==null) {
-//						//	table.get(i+word.length())==null) {
-//						ArrayList<LinkedList<String>>p=table4[i];
-//						LinkedList<String>m=new LinkedList<String>();
-//						m.add(word);
-//						p.add(m);
-//					//	table.set(i+word.length(), m);
-//						table4[i+word.length()]= p;
-//					}
-//					else {
-						ArrayList<LinkedList<String>> l=new ArrayList<>();
-						
-						l=table4[i];
-						if(l.isEmpty()) {
-							LinkedList<String>h1=new LinkedList<>();
-							h1.add(word);
-							l.add(h1);
-						}
-						else {
-						l.forEach(q->q.add(word));
-						ArrayList<LinkedList<String>> lk=new ArrayList<>();
-							lk=	table4[i+word.length()];
-							if(lk!=null) {
-						lk.addAll(l);
-						table4[i+word.length()]=lk;
-					}}
-
-							}
-			//	}
 					
+
 				}
-				
+				}
 			}
-			
-			
 		}
 		
 		return table4[target.length()];
