@@ -17,7 +17,9 @@ public class FreeCCDPAllConstructTabulation {
 		ArrayList<LinkedList<String>> table=new ArrayList<LinkedList<String>>(10);
 		ArrayList<LinkedList<String>> table2=new ArrayList<LinkedList<String>>();
 		LinkedList<String> table3[] = new LinkedList[target.length()];
+		
 		ArrayList<LinkedList<String>> table4[] = new ArrayList[target.length()+1];
+		
 		ArrayList<LinkedList<String>>n=new ArrayList<LinkedList<String>>();
 		LinkedList<String>h=new LinkedList<>();
 
@@ -32,7 +34,29 @@ public class FreeCCDPAllConstructTabulation {
 				if(target.length()>=i+word.length()) {
 				String slice=target.substring(i,i+word.length());
 				if(slice.equals(word)) {
+				//	LinkedList<String>h2=new LinkedList<>();
+					ArrayList<LinkedList<String>>n2=new ArrayList<LinkedList<String>>();
 					
+				//	table4[i].forEach(ll->n2.add(ll));
+				//	for(int k=0;k<table4[i].size();k++) {
+					//	for(LinkedList<String> n3:table4[i]) {
+							
+						
+						
+						ArrayList<LinkedList<String>> n3=table4[i];
+						if (n3!=null) {
+						for(LinkedList<String>s:n3) {
+							LinkedList<String>h2=(LinkedList<String>) s.clone();
+							n2.add(h2);
+						}
+						}
+					
+//					n2.addAll(table4[i]);
+					n2.forEach(ll->ll.add(word));
+					if(table4[i+word.length()]==null) {
+						table4[i+word.length()]=new ArrayList<LinkedList<String>>();
+					}
+					table4[i+word.length()].addAll(n2);
 
 				}
 				}
