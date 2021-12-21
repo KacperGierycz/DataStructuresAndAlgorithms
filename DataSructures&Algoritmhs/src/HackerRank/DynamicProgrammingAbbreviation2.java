@@ -12,7 +12,7 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-class Result20 {
+class Result21 {
 
     /*
      * Complete the 'abbreviation' function below.
@@ -24,64 +24,35 @@ class Result20 {
      */
 
     public static String abbreviation(String a, String b) {
-    	char aa=a.charAt(2);
-    	
-    	Character bb='c';
-    	
-    	Character.isLowerCase(bb);
-    	Character.toUpperCase(aa);
-    	int al=a.length();
-    	int bl=b.length();
-    	int[][]dp=new int[al+1][bl+1];
-    	char[] ac=a.toCharArray();
-    	char[] bc=b.toCharArray();
-    	
+    // Write your code here
     
-    for(int i=1;i<al+1;i++){
-    	 for(int j=1;j<bl+1;j++){
-    		
-    		 if(Character.isUpperCase(ac[i-1])) {
-    			 if(ac[i-1]==bc[j-1]){
-    				 dp[i][j]=dp[i-1][j-1]+1;
-    				 
-    				 
-    				 
-    				 }
-    			 
-
-    		 }
-    		 else if(Character.toUpperCase(ac[i-1])==bc[j-1]) {
-    			 dp[i][j]=dp[i-1][j-1]+1;
-    		 
-    		 }
-    		 else {
-    			 dp[i][j]=Math.max(dp[i-1][j], dp[i][j-1]);
-    		 }
-		}
-    //	Character q=ac[i];
-
-    	}
-    System.out.println( "arr"+dp[al][bl]);    
-    System.out.println("bl"+bl);    
-    
-    
-    if(dp[al][bl]>=bl) {
-    	return "YES";
+        char[] ac=a.toCharArray();
+        char[] bc=b.toCharArray();
+    int ib=0;
+    for(int i=0;i<a.length();i++){
+        if(ac[i]==bc[ib]){
+            ib++;
+        }
+        else if(Character.isLowerCase(ac[i])){
+        if(Character.toUpperCase(ac[i])==bc[ib]){
+            ib++;
+            }
+            else{
+                continue;
+            }
+        }
+        else{return "NO";}
+        
+        
+        
     }
-    else {
-    	return "NO";
-    }
-    
 
-    
-    
-    
-    
+    return "YES";
     }
 
 }
 
-public class DynamicProgrammingAbbreviation {
+public class DynamicProgrammingAbbreviation2 {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         //   BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -94,7 +65,7 @@ public class DynamicProgrammingAbbreviation {
 
                 String b = bufferedReader.readLine();
 
-                String result = Result20.abbreviation(a, b);
+                String result = Result21.abbreviation(a, b);
 
                 bufferedWriter.write(result);
                 bufferedWriter.newLine();
